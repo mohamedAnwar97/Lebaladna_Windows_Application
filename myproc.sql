@@ -82,3 +82,12 @@ begin
 update Eventss set ID=@id,EName=@EName,descp=@descp,datee=@datee,fromd=@fromd,tod=@rod,TeamResp=@Team where ID=@id
 end
 go
+create procedure Checkuser @user varchar(10),@pass varchar(10)
+as
+begin
+if((select count(*) from Members where username=@user and mpassword=@pass)=1)
+return (select ID from Members where username=@user and mpassword=@pass)
+else
+return 0
+end 
+go
